@@ -4,8 +4,7 @@ import pandas as pd
 st.set_page_config(
     page_title="Home",
     page_icon="📽",
-    layout="wide",
-    theme="Dark"
+    layout="wide"
 )
 
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
