@@ -1,11 +1,18 @@
 import streamlit as st
 import pandas as pd
 
+
 st.set_page_config(
     page_title="Home",
     page_icon="📽",
     layout="wide"
 )
+
+@st.cache_data
+def carregar_dados():
+    return pd.read_csv("archive/CLEAN_FIFA23_official_data.csv", index_col=0)
+
+
 
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
 
