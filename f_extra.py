@@ -1,28 +1,23 @@
-@extra
-def add_logo(logo_url: str, height: int = 120):
-    """Add a logo (from logo_url) on the top of the navigation page of a multipage app.
-    Taken from https://discuss.streamlit.io/t/put-logo-and-title-above-on-top-of-page-navigation-in-sidebar-of-multipage-app/28213/6
+import streamlit as st
 
-    The url can either be a url to the image, or a local path to the image.
-
-    Args:
-        logo_url (str): URL/local path of the logo
-    """
-
-    if validators.url(logo_url) is True:
-        logo = f"url({logo_url})"
-    else:
-        logo = f"url(data:image/png;base64,{base64.b64encode(Path(logo_url).read_bytes()).decode()})"
-
+def add_logo():
     st.markdown(
-        f"""
+        """
         <style>
-            [data-testid="stSidebarNav"] {{
-                background-image: {logo};
+            [data-testid="stSidebarNav"] {
+                background-image: url(https://imgur.com/DEfCosk);
                 background-repeat: no-repeat;
-                padding-top: {height - 40}px;
+                padding-top: 120px;
                 background-position: 20px 20px;
-            }}
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "My Company Name";
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }
         </style>
         """,
         unsafe_allow_html=True,

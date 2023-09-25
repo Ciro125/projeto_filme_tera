@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
+from f_extra import add_logo
 
 # Configurações da página
 st.set_page_config(
