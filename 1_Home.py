@@ -17,10 +17,12 @@ def get_dados():
 
 @st.cache_data
 def get_models():
-    RF_model = pickle.load(open('models\Rf_clf', 'rb'))
-    XGB_model = pickle.load(open('models\Xgb_clf', 'rb'))
+    LR_model = pickle.load(open('models\teste\.pkl\lr_clf.pkl', 'rb'))
+    RF_model = pickle.load(open('models\teste\.pkl\Rf_clf.pkl', 'rb'))
+    Xgb_model = pickle.load(open('models\teste\.pkl\Xgb_clf.pkl', 'rb'))
+    SVM_model = pickle.load(open('models\teste\.pkl\svm_clf.pkl', 'rb'))
 
-    return RF_model, XGB_model
+    return LR_model,RF_model, Xgb_model,SVM_model
 
 # Puxando os dados e os modelos
 df_filmes = get_dados()
