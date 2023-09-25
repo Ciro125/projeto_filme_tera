@@ -1,20 +1,34 @@
 import streamlit as st
 import pandas as pd
+import pickle
 
-
+# Configurações da página
 st.set_page_config(
     page_title="Home",
     page_icon="📽",
     layout="wide"
 )
 
+# Funções para pegar os dados e os modelos
 @st.cache_data
-def carregar_dados():
-    return pd.read_csv("archive/CLEAN_FIFA23_official_data.csv", index_col=0)
+def get_dados():
+    return pd.read_excel("bases de dado\df_filmes_pre_processada.xlsx", index_col=0)
 
+@st.cache_data
+def get_models():
+    RF_model = pickle.load(open('models\Rf_clf', 'rb'))
+    XGB_model = pickle.load(open('models\Xgb_clf', 'rb'))
 
+    return RF_model, XGB_model
 
+# Puxando os dados e os modelos
+df_filmes = get_dados()
+st.session_state["df_filmes"] = df_filmes
+
+# Corpo da pagina
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
+
+df_filmes
 
 st.sidebar.markdown("Feito por [Ana Carolina Novaes Silva](https://www.linkedin.com/in/ana-carolina-novaes-silva-723a22b9/)")
 st.sidebar.markdown("Feito por [Ciro Menescal da Silva Campos](https://www.linkedin.com/in/ciro-menescal-da-silva-campos-396462179/)")
