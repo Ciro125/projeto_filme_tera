@@ -24,7 +24,7 @@ def get_models():
     Xgb_model = pickle.load(open('models\teste\.pkl\Xgb_clf.pkl', 'rb'))
     SVM_model = pickle.load(open('models\teste\.pkl\svm_clf.pkl', 'rb'))
 
-    return LR_model,RF_model, Xgb_model,SVM_model
+    return LR_model, RF_model, Xgb_model, SVM_model
 
 @st.cache_data
 def get_encoder():
