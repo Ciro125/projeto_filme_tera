@@ -19,27 +19,36 @@ def get_dados():
 
 @st.cache_data
 def get_models():
-    LR_model = pickle.load(open('models\teste\.pkl\lr_clf.pkl', 'rb'))
-    RF_model = pickle.load(open('models\teste\.pkl\Rf_clf.pkl', 'rb'))
-    Xgb_model = pickle.load(open('models\teste\.pkl\Xgb_clf.pkl', 'rb'))
-    SVM_model = pickle.load(open('models\teste\.pkl\svm_clf.pkl', 'rb'))
+    lr_clf = pickle.load(open('models\classificacao\lr_clf.pkl', 'rb'))
+    rf_clf = pickle.load(open('models\classificacao\Rf_clf.pkl', 'rb'))
+    xgb_clf = pickle.load(open('models\classificacao\Xgb_clf.pkl', 'rb'))
+    svm_clf = pickle.load(open('models\classificacao\svm_clf.pkl', 'rb'))
+    lr_reg = pickle.load(open('models\regressao\lr_reg.pkl', 'rb'))
+    rf_reg = pickle.load(open('models\regressao\Rf_reg.pkl', 'rb'))
+    xgb_reg = pickle.load(open('models\regressao\Xgb_reg.pkl', 'rb'))
+    svm_reg = pickle.load(open('models\regressao\svm_reg.pkl', 'rb'))
 
-    return LR_model, RF_model, Xgb_model, SVM_model
+    return lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg
 
 @st.cache_data
 def get_encoder():
-    return joblib.load(r"encoders\one_hot_encoder_com_diretor.pkl")
+    OHE_CLF = joblib.load(r"encoders\one_hot_encoder_com_diretor.pkl")
+    OHE_REG = joblib.load(r"encoders\one_hot_encoder_com_diretor_revenue.pkl")
+    return  OHE_CLF, OHE_REG
 
 @st.cache_data
 def get_scaler():
-    return joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
+    SCALER_CLF = joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
+    SCALER_REG = joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
+    return SCALER_CLF, SCALER_REG
 
 
 # Puxando os dados e os modelos
 df_filmes = get_dados()
 st.session_state["df_filmes"] = df_filmes
-OHE = get_encoder()
-Scaler =  get_scaler()
+lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg = get_models()
+OHE_CLF, OHE_REG = get_encoder()
+SCALER_REG, SCALER_REG =  get_scaler()
 
 
 # Corpo da pagina
