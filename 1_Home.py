@@ -19,14 +19,14 @@ def get_dados():
 
 @st.cache_data
 def get_models():
-    lr_clf = pickle.load(open('models\classificacao\lr_clf.pkl', 'rb'))
-    rf_clf = pickle.load(open('models\classificacao\Rf_clf.pkl', 'rb'))
-    xgb_clf = pickle.load(open('models\classificacao\Xgb_clf.pkl', 'rb'))
-    svm_clf = pickle.load(open('models\classificacao\svm_clf.pkl', 'rb'))
-    lr_reg = pickle.load(open('models\regressao\lr_reg.pkl', 'rb'))
-    rf_reg = pickle.load(open('models\regressao\Rf_reg.pkl', 'rb'))
-    xgb_reg = pickle.load(open('models\regressao\Xgb_reg.pkl', 'rb'))
-    svm_reg = pickle.load(open('models\regressao\svm_reg.pkl', 'rb'))
+    lr_clf = pickle.load(open(r'models\classificacao\lr_clf.pkl', 'rb'))
+    rf_clf = pickle.load(open(r'models\classificacao\Rf_clf.pkl', 'rb'))
+    xgb_clf = pickle.load(open(r'models\classificacao\Xgb_clf.pkl', 'rb'))
+    svm_clf = pickle.load(open(r'models\classificacao\svm_clf.pkl', 'rb'))
+    lr_reg = pickle.load(open(r'models\regressao\lr_reg.pkl', 'rb'))
+    rf_reg = pickle.load(open(r'models\regressao\Rf_reg.pkl', 'rb'))
+    xgb_reg = pickle.load(open(r'models\regressao\Xgb_reg.pkl', 'rb'))
+    svm_reg = pickle.load(open(r'models\regressao\svm_reg.pkl', 'rb'))
 
     return lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg
 
