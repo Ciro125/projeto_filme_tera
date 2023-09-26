@@ -15,31 +15,31 @@ st.set_page_config(
 # Funções para pegar os dados e os modelos
 @st.cache_data
 def get_dados():
-    return pd.read_excel(r"\bases de dado\df_filmes_pre_processada.xlsx", index_col=0)
+    return pd.read_excel(r"bases_de_dado\df_filmes_pre_processada.xlsx", index_col=0)
 
 @st.cache_data
 def get_models():
-    lr_clf = pickle.load(open(r'\models\classificacao\lr_clf.pkl', 'rb'))
-    rf_clf = pickle.load(open(r'\models\classificacao\Rf_clf.pkl', 'rb'))
-    xgb_clf = pickle.load(open(r'\models\classificacao\Xgb_clf.pkl', 'rb'))
-    svm_clf = pickle.load(open(r'\models\classificacao\svm_clf.pkl', 'rb'))
-    lr_reg = pickle.load(open(r'\models\regressao\lr_reg.pkl', 'rb'))
-    rf_reg = pickle.load(open(r'\models\regressao\Rf_reg.pkl', 'rb'))
-    xgb_reg = pickle.load(open(r'\models\regressao\Xgb_reg.pkl', 'rb'))
-    svm_reg = pickle.load(open(r'\models\regressao\svm_reg.pkl', 'rb'))
+    lr_clf = pickle.load(open(r'models\classificacao\lr_clf.pkl', 'rb'))
+    rf_clf = pickle.load(open(r'models\classificacao\Rf_clf.pkl', 'rb'))
+    xgb_clf = pickle.load(open(r'models\classificacao\Xgb_clf.pkl', 'rb'))
+    svm_clf = pickle.load(open(r'models\classificacao\svm_clf.pkl', 'rb'))
+    lr_reg = pickle.load(open(r'models\regressao\lr_reg.pkl', 'rb'))
+    rf_reg = pickle.load(open(r'models\regressao\Rf_reg.pkl', 'rb'))
+    xgb_reg = pickle.load(open(r'models\regressao\Xgb_reg.pkl', 'rb'))
+    svm_reg = pickle.load(open(r'models\regressao\svm_reg.pkl', 'rb'))
 
     return lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg
 
 @st.cache_data
 def get_encoder():
-    OHE_CLF = joblib.load(r"\encoders\one_hot_encoder_com_diretor.pkl")
-    OHE_REG = joblib.load(r"\encoders\one_hot_encoder_com_diretor_revenue.pkl")
+    OHE_CLF = joblib.load(r"encoders\one_hot_encoder_com_diretor.pkl")
+    OHE_REG = joblib.load(r"encoders\one_hot_encoder_com_diretor_revenue.pkl")
     return  OHE_CLF, OHE_REG
 
 @st.cache_data
 def get_scaler():
-    SCALER_CLF = joblib.load(r"\scalers\standard_scaler_com_diretor.pkl")
-    SCALER_REG = joblib.load(r"\scalers\standard_scaler_com_diretor.pkl")
+    SCALER_CLF = joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
+    SCALER_REG = joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
     return SCALER_CLF, SCALER_REG
 
 
