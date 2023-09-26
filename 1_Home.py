@@ -15,7 +15,7 @@ st.set_page_config(
 # Funções para pegar os dados e os modelos
 @st.cache_data
 def get_dados():
-    return pd.read_excel(r"bases_de_dado\df_filmes_pre_processada.xlsx", index_col=0)
+    return pd.read_excel(r"bases_de_dados/df_filmes_pre_processada.xlsx", index_col=0)
 
 @st.cache_data
 def get_models():
