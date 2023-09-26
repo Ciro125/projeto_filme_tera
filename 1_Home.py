@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import joblib
+
 from f_extra import add_logo
 
 # Configurações da página
@@ -24,9 +26,21 @@ def get_models():
 
     return LR_model,RF_model, Xgb_model,SVM_model
 
+@st.cache_data
+def get_encoder():
+    return joblib.load(r"encoders\one_hot_encoder_com_diretor.pkl")
+
+@st.cache_data
+def get_scaler():
+    return joblib.load(r"scalers\standard_scaler_com_diretor.pkl")
+
+
 # Puxando os dados e os modelos
 df_filmes = get_dados()
 st.session_state["df_filmes"] = df_filmes
+OHE = get_encoder()
+Scaler =  get_scaler()
+
 
 # Corpo da pagina
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
