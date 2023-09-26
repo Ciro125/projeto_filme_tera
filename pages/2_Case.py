@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
+import sklearn
 import pickle
+import joblib
+
+from f_extra import add_logo
 
 
 
