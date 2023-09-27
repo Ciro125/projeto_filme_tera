@@ -59,7 +59,7 @@ SCALER_CLF, SCALER_REG =  get_scaler()
 lista_tipos_script = df_filmes['Script Type'].unique().tolist()
 lista_diretores = df_filmes['Director'].unique().tolist()
 
-# Session State
+'''# Session State
 st.session_state["df_filmes"] = df_filmes
 st.session_state["lista_tipos_script"] = lista_tipos_script
 st.session_state["lista_diretores"] = lista_diretores
@@ -74,7 +74,7 @@ st.session_state["svm_clf"] = svm_clf
 st.session_state["lr_reg"] = lr_reg
 st.session_state["rf_reg"] = rf_reg
 st.session_state["xgb_reg"] = xgb_reg
-st.session_state["svm_reg"] = svm_reg
+st.session_state["svm_reg"] = svm_reg'''
 
 
 # Corpo da pagina
