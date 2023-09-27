@@ -151,8 +151,8 @@ resultado_regressao_svm = svm_reg.predict(df_REG)
 # Suponha que você tenha resultados de modelos para cada modelo
 resultados_modelos = {
     "Regressão Linear e Logistica [Quebrado]": {
-        "Classificação (Sucesso)": 0,  # Substitua com o resultado real
-        "Regressão (Valor)": 1000,  # Substitua com o resultado real
+        "Classificação (Sucesso)": resultado_classificacao_lr,  # Substitua com o resultado real
+        "Regressão (Valor)": resultado_regressao_lr,  # Substitua com o resultado real
     },
     "Randon Forest": {
         "Classificação (Sucesso)": resultado_classificacao_rf,  # Substitua com o resultado real
