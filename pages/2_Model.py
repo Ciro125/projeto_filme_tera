@@ -4,9 +4,7 @@ import sklearn
 import pickle
 import joblib
 import numpy as np
-
 from f_extra import add_logo
-
 
 # Funções para pegar os dados e os modelos
 @st.cache_data
@@ -32,15 +30,11 @@ def get_encoder():
     OHE_REG = joblib.load(r"encoders/one_hot_encoder_com_diretor_revenue.pkl")
     return  OHE_CLF, OHE_REG
 
-
-
-
 @st.cache_data
 def get_scaler():
     SCALER_CLF = joblib.load(r"scalers/standard_scaler_com_diretor.pkl")
     SCALER_REG = joblib.load(r"scalers/standard_scaler_com_diretor.pkl")
     return SCALER_CLF, SCALER_REG
-
 
 # Puxando os dados e os modelos
 df_filmes = get_dados()
@@ -48,31 +42,9 @@ lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg = get_models(
 OHE_CLF, OHE_REG = get_encoder()
 SCALER_CLF, SCALER_REG =  get_scaler()
 
-
 # Crie as listas
 lista_tipos_script = df_filmes['Script Type'].unique().tolist()
 lista_diretores = df_filmes['Director'].unique().tolist()
-
-
-
-
-'''# Session State
-df_filmes  = st.session_state["df_filmes"] 
-lista_tipos_script  = st.session_state["lista_tipos_script"] 
-lista_diretores  = st.session_state["lista_diretores"] 
-OHE_CLF  = st.session_state["OHE_CLF"] 
-OHE_REG  = st.session_state["OHE_REG"] 
-SCALER_CLF  = st.session_state["SCALER_CLF"] 
-SCALER_REG  = st.session_state["SCALER_REG"] 
-lr_clf  = st.session_state["lr_clf"]
-rf_clf  = st.session_state["rf_clf"]
-xgb_clf = st.session_state["xgb_clf"] 
-svm_clf  = st.session_state["svm_clf"] 
-lr_reg  = st.session_state["lr_reg"]
-rf_reg  = st.session_state["rf_reg"]
-xgb_reg = st.session_state["xgb_reg"] 
-svm_reg  = st.session_state["svm_reg"] '''
-
 
 # Calcular o valor máximo com base na coluna "Budget ($million)" do DataFrame
 valor_maximo_orcamento = df_filmes["Budget ($million)"].max()
@@ -82,12 +54,8 @@ valor_maximo_orcamento = float(valor_maximo_orcamento)
 valor_maximo_runtime = df_filmes["Runtime (Minutes)"].max()
 valor_maximo_runtime = float(valor_maximo_runtime)
 
-
-
-
 # Corpo da pagina
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
-
 
 df_filmes
 
@@ -117,11 +85,6 @@ categoria_thriller = st.checkbox("Thriller")
 categoria_war = st.checkbox("War")
 categoria_western = st.checkbox("Western")
 
-
-
-
-
-
 # Suponha que você tenha um DataFrame df_filmes com a coluna "Oscar Winners" contendo valores booleanos (True/False)
 
 # Definir uma lista de categorias
@@ -147,8 +110,6 @@ df = pd.DataFrame(dados)
 # Exibir o DataFrame
 st.write(df)
 
-
-
 # Defina as colunas categóricas que deseja codificar
 colunas_categoricas = ['Script Type', 'Director']
 
@@ -164,13 +125,7 @@ df = pd.concat([df, categorias_encoded_df], axis=1)
 # Remova as colunas originais 'Script Type' e 'Director', se desejar
 df.drop(colunas_categoricas, axis=1, inplace=True)
 
-
-
-
-
-
 df['Budget ($million)'] = df['Budget ($million)'].astype(float)
-
 
 df_CLF = SCALER_CLF.transform(df)
 df_REG = SCALER_REG.transform(df)
@@ -190,8 +145,6 @@ resultado_regressao_lr = lr_reg.predict(df_REG)
 resultado_regressao_rf = rf_reg.predict(df_REG)
 #resultado_regressao_xgb = xgb_reg.predict(df_REG)
 resultado_regressao_svm = svm_reg.predict(df_REG)
-
-
 
 # Corpo do modelo
 
