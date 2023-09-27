@@ -3,6 +3,7 @@ import pandas as pd
 import sklearn
 import pickle
 import joblib
+import numpy as np
 
 from f_extra import add_logo
 
@@ -37,6 +38,9 @@ def get_encoder():
     OHE_REG = joblib.load(r"encoders/one_hot_encoder_com_diretor_revenue.pkl")
     return  OHE_CLF, OHE_REG
 
+
+
+
 @st.cache_data
 def get_scaler():
     SCALER_CLF = joblib.load(r"scalers/standard_scaler_com_diretor.pkl")
@@ -46,10 +50,31 @@ def get_scaler():
 
 # Puxando os dados e os modelos
 df_filmes = get_dados()
-st.session_state["df_filmes"] = df_filmes
 lr_clf, rf_clf, xgb_clf, svm_clf, lr_reg, rf_reg, xgb_reg, svm_reg = get_models()
 OHE_CLF, OHE_REG = get_encoder()
-SCALER_REG, SCALER_REG =  get_scaler()
+SCALER_CLF, SCALER_REG =  get_scaler()
+
+
+# Crie as listas
+lista_tipos_script = df_filmes['Script Type'].unique().tolist()
+lista_diretores = df_filmes['Director'].unique().tolist()
+
+# Session State
+st.session_state["df_filmes"] = df_filmes
+st.session_state["lista_tipos_script"] = lista_tipos_script
+st.session_state["lista_diretores"] = lista_diretores
+st.session_state["OHE_CLF"] = OHE_CLF
+st.session_state["OHE_REG"] = OHE_REG
+st.session_state["SCALER_CLF"] = SCALER_CLF
+st.session_state["SCALER_REG"] = SCALER_REG
+st.session_state["lr_clf"] = lr_clf
+st.session_state["rf_clf"] = rf_clf
+st.session_state["xgb_clf"] = xgb_clf
+st.session_state["svm_clf"] = svm_clf
+st.session_state["lr_reg"] = lr_reg
+st.session_state["rf_reg"] = rf_reg
+st.session_state["xgb_reg"] = xgb_reg
+st.session_state["svm_reg"] = svm_reg
 
 
 # Corpo da pagina
