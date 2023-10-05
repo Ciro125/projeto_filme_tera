@@ -137,20 +137,20 @@ df_REG = np.delete(df_REG, drop_col, axis=1)
 # Modelos de classificação
 resultado_classificacao_lr = lr_clf.predict(df_CLF)
 resultado_classificacao_rf = rf_clf.predict(df_CLF)
-#resultado_classificacao_xgb = xgb_clf.predict(df_CLF)
+resultado_classificacao_xgb = xgb_clf.predict(df_CLF)
 resultado_classificacao_svm = svm_clf.predict(df_CLF)
 
 # Modelos de regressão
 resultado_regressao_lr = lr_reg.predict(df_REG)
 resultado_regressao_rf = rf_reg.predict(df_REG)
-#resultado_regressao_xgb = xgb_reg.predict(df_REG)
+resultado_regressao_xgb = xgb_reg.predict(df_REG)
 resultado_regressao_svm = svm_reg.predict(df_REG)
 
 # Corpo do modelo
 
 # Suponha que você tenha resultados de modelos para cada modelo
 resultados_modelos = {
-    "Regressão Linear e Logistica [Quebrado]": {
+    "Regressão Linear e Logistica [Regressão Quebrada]": {
         "Classificação (Sucesso)": resultado_classificacao_lr,  # Substitua com o resultado real
         "Regressão (Valor)": resultado_regressao_lr,  # Substitua com o resultado real
     },
@@ -162,9 +162,9 @@ resultados_modelos = {
         "Classificação (Sucesso)": resultado_classificacao_svm,  # Substitua com o resultado real
         "Regressão (Valor)": resultado_regressao_svm,  # Substitua com o resultado real
     },
-    "XgBoost [Quebrado]": {
-        "Classificação (Sucesso)": 0,  # Substitua com o resultado real
-        "Regressão (Valor)": 1200,  # Substitua com o resultado real
+    "Gradient Boosting": {
+        "Classificação (Sucesso)": resultado_classificacao_xgb,  # Substitua com o resultado real
+        "Regressão (Valor)": resultado_regressao_xgb,  # Substitua com o resultado real
     }
 }
 
