@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 import sklearn
 import pickle
 import joblib
+import matplotlib.pyplot as plt
 import numpy as np
 from f_extra import add_logo
 
@@ -57,7 +59,6 @@ valor_maximo_runtime = float(valor_maximo_runtime)
 # Corpo da pagina
 st.write("# PROJETO TERA - CLASSIFICADOR DE FILMES! 🎬")
 
-df_filmes
 
 st.write("# Crie o seu filmes! 🎬")
 diretor = st.selectbox("Nome do Diretor", lista_diretores)
@@ -150,10 +151,6 @@ resultado_regressao_svm = svm_reg.predict(df_REG)
 
 # Suponha que você tenha resultados de modelos para cada modelo
 resultados_modelos = {
-    "Regressão Linear e Logistica [Regressão Quebrada]": {
-        "Classificação (Sucesso)": resultado_classificacao_lr,  # Substitua com o resultado real
-        "Regressão (Valor)": resultado_regressao_lr,  # Substitua com o resultado real
-    },
     "Randon Forest": {
         "Classificação (Sucesso)": resultado_classificacao_rf,  # Substitua com o resultado real
         "Regressão (Valor)": resultado_regressao_rf,  # Substitua com o resultado real
@@ -170,6 +167,30 @@ resultados_modelos = {
 
 # Criar o layout com duas colunas para cada modelo
 st.write("# Resultados dos Modelos")
+
+# Criar uma lista de dicionários para armazenar os resultados
+lista_resultados = []
+
+# Loop através dos modelos
+for nome_modelo, resultados in resultados_modelos.items():
+    resultado_classificacao = resultados["Classificação (Sucesso)"]
+    
+    # Converter o resultado de regressão para float64
+    resultado_regressao = float(resultados["Regressão (Valor)"])
+    
+    # Adicionar os resultados à lista
+    lista_resultados.append({
+        "Modelo": nome_modelo,
+        "Classificação (Sucesso)": resultado_classificacao,
+        "Regressão (Valor)": resultado_regressao
+    })
+
+# Criar o DataFrame a partir da lista de dicionários
+df_resultados = pd.DataFrame(lista_resultados)
+
+# Exibir o DataFrame com os resultados
+st.write(df_resultados)
+
 
 # Loop através dos modelos
 for nome_modelo, resultados in resultados_modelos.items():
@@ -190,6 +211,7 @@ for nome_modelo, resultados in resultados_modelos.items():
     
     # Separador entre modelos
     st.write("---")
+
 
 
 
