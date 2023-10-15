@@ -2,6 +2,7 @@
 numpy
 joblib
 plotly
+matplotlib
 xgboost==2.0.0
 scikit-learn==1.2.1
 streamlit==1.26.0
